@@ -1,0 +1,19 @@
+package jluzon.mov.urjc.xorapp;
+
+public class Level2 extends Level{
+    private final int ENTRIES = 4;
+
+    public Level2(){
+        this.setNetries(ENTRIES);
+    }
+    // &&--AND ||--OR
+    @Override
+    public boolean badOut(boolean cb[]){
+        return !((cb[0]||cb[1])||!(cb[2]&&cb[3]));
+    }
+
+    @Override
+    public boolean goodOut(boolean cb[]){
+        return !((cb[0]||cb[1])||!(cb[2]&&cb[3]))||!(cb[0]||cb[1]);
+    }
+}

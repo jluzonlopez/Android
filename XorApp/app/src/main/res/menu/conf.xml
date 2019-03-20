@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/help"
+        android:title="@string/help"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/passed"
+        android:title="@string/passed"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/nivel0"
+        android:title="@string/n0"/>
+    <item android:id="@+id/nivel1"
+        android:title="@string/n1"/>
+    <item android:id="@+id/nivel2"
+        android:title="@string/n2"/>
+    <item android:id="@+id/nivel3"
+        android:title="@string/n3"/>
+</menu>
