@@ -24,13 +24,18 @@ public abstract class Level {
     }
 
     public void setNetries(int n){ netries = n; }
-    public void setImg() {
+    private void setImg() {
         imgV.setImageResource(idImg);
     }
-    public void setButtons(CheckBox[] cb){
+    private void setButtons(CheckBox[] cb){
         resetButtons(cb);
         for(int i=0;i<netries;i++){
             cb[i].setVisibility(View.VISIBLE);
         }
+    }
+
+    public void initLevel(CheckBox[] cb){
+        setImg();
+        setButtons(cb);
     }
 }

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             imgAry = new int[maxLvl];
             menArray = new int[maxLvl];
             img = findViewById(R.id.lvlimg);
-            lvFc = new LevelFactory(MainActivity.this,img,imgAry,chkB);
+            lvFc = new LevelFactory(img,imgAry);
 
             for(int i=0;i<4;i++){
                 int id = rso.getIdentifier("game"+i,"id",getPackageName());
@@ -188,14 +188,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLevelRecover(int lv){
-        levelViews.setLv(levelViews.lvFc.produce(lv));
+        Level l = levelViews.lvFc.produce(lv);
+        l.initLevel(levelViews.chkB);
+        levelViews.setLv(l);
         levelViews.setLvlImg(lv);
     }
 
     private void setLevel(int lv){
-        levelViews.setLv(levelViews.lvFc.produce(lv));
-        levelViews.setLvlImg(lv);
-        levelViews.setAllGone();
+       setLevelRecover(lv);
+       levelViews.setAllGone();
     }
 
     @Override
