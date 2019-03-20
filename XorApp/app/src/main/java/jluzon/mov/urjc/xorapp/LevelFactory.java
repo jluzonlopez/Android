@@ -7,10 +7,12 @@ import android.widget.ImageView;
 public class LevelFactory {
     private static ImageView img;
     private static int[] imgArray;
+    //private CheckBox[] chkB;
 
     public LevelFactory(ImageView iv, int[] imgs){
         img = iv;
         imgArray = imgs;
+        //chkB = cb;
     }
 
     public static Level produce(int desc){

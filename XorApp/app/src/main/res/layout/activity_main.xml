@@ -56,6 +56,7 @@
         android:layout_gravity="center"
         android:src="@mipmap/gobutton2"
         android:onClick="solutionButton"
+        android:id="@+id/solutionButton"
         android:background="@null"/>
 
     <ImageView
