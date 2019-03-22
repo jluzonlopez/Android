@@ -1,12 +1,13 @@
 package jluzon.mov.urjc.xorapp;
 
+import android.widget.CheckBox;
 import android.widget.ImageView;
 
 public class Level1 extends Level{
     private final int ENTRIES = 3;
 
-    public Level1(ImageView img, int id){
-       super(img,id);
+    public Level1(ImageView img, int id, CheckBox[] chb){
+       super(img,id, chb);
        this.setNetries(ENTRIES);
     }
     // &&--AND ||--OR

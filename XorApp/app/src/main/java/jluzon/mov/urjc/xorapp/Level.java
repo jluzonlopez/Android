@@ -8,10 +8,12 @@ public abstract class Level {
     private int netries;
     private static ImageView imgV;
     private int idImg;
+    private CheckBox[] cb;
 
-    public Level(ImageView img, int id){
+    public Level(ImageView img, int id, CheckBox[] chb){
         imgV = img;
         idImg = id;
+        cb = chb;
     }
     // &&--AND ||--OR
     public abstract boolean badOut(boolean cB[]);
@@ -27,15 +29,16 @@ public abstract class Level {
     private void setImg() {
         imgV.setImageResource(idImg);
     }
-    private void setButtons(CheckBox[] cb){
+
+    private void setButtons(){
         resetButtons(cb);
         for(int i=0;i<netries;i++){
             cb[i].setVisibility(View.VISIBLE);
         }
     }
 
-    public void initLevel(CheckBox[] cb){
+    public void initLevel(){
         setImg();
-        setButtons(cb);
+        setButtons();
     }
 }

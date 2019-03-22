@@ -7,31 +7,31 @@ import android.widget.ImageView;
 public class LevelFactory {
     private static ImageView img;
     private static int[] imgArray;
-    //private CheckBox[] chkB;
+    private static CheckBox[] chkB;
 
-    public LevelFactory(ImageView iv, int[] imgs){
+    public LevelFactory(ImageView iv, int[] imgs, CheckBox[] cb){
         img = iv;
         imgArray = imgs;
-        //chkB = cb;
+        chkB = cb;
     }
 
     public static Level produce(int desc){
         Level l;
         switch (desc){
             case 0:
-                l = new Level0(img,imgArray[desc]);
+                l = new Level0(img,imgArray[desc],chkB);
                 break;
             case 1:
-                l = new Level1(img,imgArray[desc]);
+                l = new Level1(img,imgArray[desc],chkB);
                 break;
             case 2:
-                l = new Level2(img,imgArray[desc]);
+                l = new Level2(img,imgArray[desc],chkB);
                 break;
             case 3:
-                l = new Level3(img,imgArray[desc]);
+                l = new Level3(img,imgArray[desc],chkB);
                 break;
             default:
-                l = new Level0(img,imgArray[desc]);
+                l = new Level0(img,imgArray[desc],chkB);
         }
         return l;
     }

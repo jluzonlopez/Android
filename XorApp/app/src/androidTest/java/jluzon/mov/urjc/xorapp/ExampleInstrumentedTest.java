@@ -41,6 +41,5 @@ public class ExampleInstrumentedTest {
                 .perform(click());
         onView(withId(R.id.solutionButton))
                 .perform(click());
-
     }
 }
