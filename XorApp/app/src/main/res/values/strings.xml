@@ -6,13 +6,5 @@
     <string name="n2">Nivel 2</string>
     <string name="n3">Nivel 3</string>
     <string name="passed">Games status</string>
-    <string name="help_menu">Este juego trata de sacar un 1 en la salida V y un 0 en la salida X,
-        para ello tienes que saber cómo funcionan las puertas lógicas para calcularlo.\n
-        OR: Obtendremos un 0 a la salida de esta puerta cuando en las dos entradas haya un 0, en cualquier otro caso obtendremos un 1.\n
-        AND: Obtendremos un 1 a la salida cuando en ambas entradas haya un 1, saldrá un 0 en otro caso.\n
-        NOT: Puerta de negación, a la salida obtendremos lo contrario que a la entrada.\n
-        NOR: Igual que OR pero obteniendo justo los valores opuestos. Saldrá un 1 cuando ambas entradas sean 0.\n
-        NAND: Negada de AND, tendremos un 0 a la salida cuando ambas entradas sean 1 y un 1 a la salida en cualquier otro caso.\n\n
-        Marca las entradas que consideres que tendrían que estar a 1, las demás estarán a 0, y pulsa el botón para resolverlo.\n
-        El juego no es secuencial, si te quedas atascado en algún nivel pasa al siguiente y vuelve a probar más tarde.\n\nBuena suerte.</string>
+    <string name="help_menu">Este juego trata de sacar un 1 en la salida V y un 0 en la salida X, para ello tienes que saber cómo funcionan las puertas lógicas para calcularlo.\nOR: Obtendremos un 0 a la salida de esta puerta cuando en las dos entradas haya un 0, en cualquier otro caso obtendremos un 1.\nAND: Obtendremos un 1 a la salida cuando en ambas entradas haya un 1, saldrá un 0 en otro caso.\nNOT: Puerta de negación, a la salida obtendremos lo contrario que a la entrada.\nNOR: Igual que OR pero obteniendo justo los valores opuestos. Saldrá un 1 cuando ambas entradas sean 0.\nNAND: Negada de AND, tendremos un 0 a la salida cuando ambas entradas sean 1 y un 1 a la salida en cualquier otro caso.\n\nMarca las entradas que consideres que tendrían que estar a 1, las demás estarán a 0, y pulsa el botón para resolverlo.\nEl juego no es secuencial, si te quedas atascado en algún nivel pasa al siguiente y vuelve a probar más tarde.\n\nBuena suerte.</string>
 </resources>

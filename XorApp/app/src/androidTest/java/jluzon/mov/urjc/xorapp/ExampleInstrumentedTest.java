@@ -33,7 +33,7 @@ public class ExampleInstrumentedTest {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void changeText_sameActivity() {
+    public void passLevel_sameActivity() {
         // Type text and then press the button.
         onView(withId(R.id.ent0))
                 .perform(click());
@@ -41,5 +41,7 @@ public class ExampleInstrumentedTest {
                 .perform(click());
         onView(withId(R.id.solutionButton))
                 .perform(click());
+        MainActivity activity = mActivityRule.getActivity();
+        int lv = activity.levelViews.getCurrentLevel();
     }
 }

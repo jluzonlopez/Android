@@ -9,13 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class StatusActivity extends AppCompatActivity {
-
+    final float scalator = 2;
+    final float textSize = 20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
         Intent status = getIntent();
         Bundle statusInfo = status.getExtras();
+
 
         boolean passLvlsArray[] = null;
         LinearLayout lay = findViewById(R.id.statusLayout);
@@ -31,11 +33,15 @@ public class StatusActivity extends AppCompatActivity {
             img = new ImageView(StatusActivity.this);
             txt.setText("Level "+i);
             txt.setGravity(Gravity.CENTER);
+            txt.setPadding(0,50,0,50);
+            txt.setTextSize(textSize);
             if(passLvlsArray[i]) {
                 img.setImageResource(R.drawable.ic_check);
             }else{
                 img.setImageResource(R.drawable.ic_death);
             }
+            img.setScaleX(scalator);
+            img.setScaleY(scalator);
             lay.addView(txt);
             lay.addView(img);
         }

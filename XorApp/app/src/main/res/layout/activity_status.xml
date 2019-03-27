@@ -6,13 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/statusLayout"
+    android:layout_marginTop="35dp"
     tools:context=".StatusActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Circuitos conseguidos"
-        android:textSize="35dp"
+        android:textSize="45dp"
+        android:fontFamily="casual"
         android:layout_gravity="center"
         android:textColor="@android:color/holo_red_dark"/>
 </android.widget.LinearLayout>

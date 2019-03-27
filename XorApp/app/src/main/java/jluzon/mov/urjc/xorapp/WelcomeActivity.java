@@ -15,6 +15,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void welcomeButton(View b){
         Intent level = new Intent(WelcomeActivity.this,MainActivity.class);
+        level.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(level);
     }
 }

@@ -3,14 +3,15 @@ package jluzon.mov.urjc.xorapp;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 public abstract class Level {
     private int netries;
     private static ImageView imgV;
     private int idImg;
-    private CheckBox[] cb;
+    private Switch[] cb;
 
-    public Level(ImageView img, int id, CheckBox[] chb){
+    public Level(ImageView img, int id, Switch[] chb){
         imgV = img;
         idImg = id;
         cb = chb;
@@ -19,7 +20,7 @@ public abstract class Level {
     public abstract boolean badOut(boolean cB[]);
     public abstract boolean goodOut(boolean cB[]);
 
-    private static void resetButtons(CheckBox[] chBArray){
+    private static void resetButtons(Switch[] chBArray){
         for(int i=0;i<chBArray.length;i++){
             chBArray[i].setVisibility(View.GONE);
         }

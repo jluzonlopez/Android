@@ -2,11 +2,12 @@ package jluzon.mov.urjc.xorapp;
 
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 public class Level2 extends Level{
     private final int ENTRIES = 4;
 
-    public Level2(ImageView img, int id, CheckBox[] chb){
+    public Level2(ImageView img, int id, Switch[] chb){
         super(img,id,chb);
         this.setNetries(ENTRIES);
     }

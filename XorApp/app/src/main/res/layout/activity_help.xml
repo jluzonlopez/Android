@@ -5,20 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginTop="35dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="10dp"
     tools:context=".HelpActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cómo jugar"
-        android:textSize="35dp"
+        android:textSize="45dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="casual"
         android:textColor="@android:color/holo_red_dark"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_menu"
         android:id="@+id/helptext"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:justificationMode="inter_word"/>
 
     <ImageView
         android:layout_width="wrap_content"

@@ -3,13 +3,14 @@ package jluzon.mov.urjc.xorapp;
 import android.content.Context;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 public class LevelFactory {
     private static ImageView img;
     private static int[] imgArray;
-    private static CheckBox[] chkB;
+    private static Switch[] chkB;
 
-    public LevelFactory(ImageView iv, int[] imgs, CheckBox[] cb){
+    public LevelFactory(ImageView iv, int[] imgs, Switch[] cb){
         img = iv;
         imgArray = imgs;
         chkB = cb;

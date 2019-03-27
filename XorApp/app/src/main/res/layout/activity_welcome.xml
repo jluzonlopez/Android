@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".WelcomeActivity">
-    <Button
+    <ImageButton
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:onClick="welcomeButton"
-        android:text="Touch to start"
+        android:src="@drawable/ic_welcomescreen"
+        android:background="@null"
         android:layout_gravity="center"/>
 </android.widget.LinearLayout>

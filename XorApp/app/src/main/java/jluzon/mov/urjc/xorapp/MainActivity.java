@@ -9,14 +9,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
 
     public class InfLvl{
+        private final int check = 1;
+        private final int death = 2;
+        private final int next = 3;
         private final int maxLvl = 4;
         private final int maxButt = 4;
         private boolean passLvlsArray[]; //which levels are passed
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         private Level lv;
         private LevelFactory lvFc;
         private View[] imgView; //0 endgame, 1 check, 2 death, 3 next
-        private CheckBox[] chkB;
+        private Switch[] chkB;
         private int imgAry[];
         private ImageView img;
         private int menArray[];
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             passLvls = 0;
             passLvlsArray = new boolean[maxLvl];
             imgView = new View[4];
-            chkB = new CheckBox[4];
+            chkB = new Switch[4];
             imgAry = new int[maxLvl];
             menArray = new int[maxLvl];
             img = findViewById(R.id.lvlimg);
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             passLvls=passLvls+1;
         }
 
-        private boolean[] getBoolBut(CheckBox[] chb){
+        private boolean[] getBoolBut(Switch[] chb){
             boolean chkBool[] = new boolean[4];
             for(int i=0;i<4;i++) {
                 chkBool[i] = chb[i].isChecked();
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        private void setAllFalse(CheckBox[] chb){
+        private void setAllFalse(Switch[] chb){
             for(int i = 0; i < chb.length; i++){
                 chb[i].setChecked(false);
             }
@@ -144,18 +147,35 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        private int toggleVis(int nm){
+            if(imgView[nm].getVisibility() == View.VISIBLE){
+                return View.GONE;
+            }
+            return View.VISIBLE;
+        }
+
+        private void setSolutViews(){
+            imgView[check].setVisibility(toggleVis(check));
+            imgView[death].setVisibility(toggleVis(death));
+            imgView[next].setVisibility(toggleVis(next));
+        }
+
+        //cambiar estas dos funciones creando valores estaticos para los indices
         private void setDeath(){
-            imgView[1].setVisibility(View.GONE);
-            imgView[2].setVisibility(View.VISIBLE);
-            imgView[3].setVisibility(View.GONE);
+            imgView[check].setVisibility(View.GONE);
+            imgView[death].setVisibility(View.VISIBLE);
+            imgView[next].setVisibility(View.GONE);
         }
 
         private void setPassed(){
-            imgView[1].setVisibility(View.VISIBLE);
-            imgView[2].setVisibility(View.GONE);
-            imgView[3].setVisibility(View.VISIBLE);
+            imgView[check].setVisibility(View.VISIBLE);
+            imgView[death].setVisibility(View.GONE);
+            imgView[next].setVisibility(View.VISIBLE);
         }
 
+        public int getCurrentLevel(){
+            return imgLvl;
+        }
     }
 
     InfLvl levelViews;
@@ -233,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
         }else if(levelViews.lv.goodOut(boolChk)){
             txt += "Salida correcta, enhorabuena!!";
             checkLevel();
-            levelViews.setPassed();
+            levelViews.setPassed();;
         }else{
             txt += "Las 2 a 0";
         }
@@ -275,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
 
         lv = levelViews.getPassLvl();
         if(lv == levelViews.maxLvl){
+            levelViews.setAllGone();
             levelViews.imgView[0].setVisibility(View.VISIBLE);
             Toast msg = Toast.makeText(MainActivity.this,"Te pasaste el juego",time);
             msg.show();
