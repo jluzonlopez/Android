@@ -11,8 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         private int imgAry[];
         private ImageView img;
         private int menArray[];
+        public TextView playerName;
 
         private void setLv(Level lv) {
             this.lv = lv;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             imgAry = new int[maxLvl];
             menArray = new int[maxLvl];
             img = findViewById(R.id.lvlimg);
+            playerName = findViewById(R.id.name);
             lvFc = new LevelFactory(img,imgAry,chkB);
 
             for(int i=0;i<4;i++){
@@ -185,6 +187,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         levelViews = new InfLvl();
+        Intent status = getIntent();
+        Bundle nameInfo = status.getExtras();
+        String name = nameInfo.getString("name");
+        levelViews.playerName.setText("Player: "+name);
         if(savedInstanceState != null){
             int lvlImg = savedInstanceState.getInt("lvl");
             boolean [] passedLvl = savedInstanceState.getBooleanArray("passedLvl");

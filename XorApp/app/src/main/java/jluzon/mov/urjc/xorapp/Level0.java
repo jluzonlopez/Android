@@ -1,6 +1,5 @@
 package jluzon.mov.urjc.xorapp;
 
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Switch;
 
