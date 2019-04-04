@@ -5,12 +5,14 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.*;
 
@@ -30,18 +32,20 @@ public class ExampleInstrumentedTest {
     }
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
     public void passLevel_sameActivity() {
+        LoginActivity activity = mActivityRule.getActivity();
         // Type text and then press the button.
-        onView(withId(R.id.ent0))
+        onView(withId(R.id.name)).perform(typeText("juan"));
+
+        /*onView(withId(R.id.ent0))
                 .perform(click());
         onView(withId(R.id.ent1))
                 .perform(click());
         onView(withId(R.id.solutionButton))
-                .perform(click());
-        MainActivity activity = mActivityRule.getActivity();
-        int lv = activity.levelViews.getCurrentLevel();
+                .perform(click());*/
+
     }
 }

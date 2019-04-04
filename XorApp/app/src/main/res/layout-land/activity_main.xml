@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +12,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="50dp"
         android:orientation="horizontal">
@@ -28,8 +27,7 @@
             android:id="@+id/chrono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="125dp"
+            android:layout_marginLeft="220dp"
             android:textSize="30dp"/>
         <TextView
             android:id="@+id/lname"
@@ -38,79 +36,89 @@
             android:fontFamily="casual"
             android:textColor="@android:color/black"
             android:textSize="30dp"
-            android:layout_marginLeft="110dp"/>
+            android:layout_marginLeft="210dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
-        <Switch
+        android:layout_marginLeft="120dp">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="@string/e1"
-            android:fontFamily="casual"
-            android:textSize="15dp"
-            android:id="@+id/ent0"
-            android:visibility="gone"/>
-        <Switch
+            android:orientation="vertical"
+            android:layout_marginTop="50dp">
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/e1"
+                android:fontFamily="casual"
+                android:textSize="15dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/ent0"
+                android:visibility="gone"/>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/e2"
+                android:fontFamily="casual"
+                android:textSize="15dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/ent1"
+                android:visibility="gone"/>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/e3"
+                android:fontFamily="casual"
+                android:textSize="15dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/ent2"
+                android:visibility="gone"/>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/e4"
+                android:fontFamily="casual"
+                android:textSize="15dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/ent3"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="@string/e2"
-            android:fontFamily="casual"
-            android:textSize="15dp"
-            android:id="@+id/ent1"
-            android:visibility="gone"/>
-        <Switch
+            android:id="@+id/lvlimg"
+            android:scaleX="0.8"
+            android:scaleY="0.8"/>
+
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="@string/e3"
-            android:fontFamily="casual"
-            android:textSize="15dp"
-            android:id="@+id/ent2"
-            android:visibility="gone"/>
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="@string/e4"
-            android:fontFamily="casual"
-            android:textSize="15dp"
-            android:id="@+id/ent3"
-            android:visibility="gone"/>
+            android:src="@mipmap/gobutton2"
+            android:onClick="solutionButton"
+            android:id="@+id/solutionButton"
+            android:background="@null"
+            android:layout_marginTop="50dp"/>
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lvlimg"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"/>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@mipmap/gobutton2"
-        android:onClick="solutionButton"
-        android:id="@+id/solutionButton"
-        android:background="@null"/>
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/ic_death"
         android:layout_gravity="center"
         android:id="@+id/game2"
         android:visibility="gone"/>
 
     <ImageView
-        android:layout_width="2000dp"
-        android:layout_height="200dp"
+        android:layout_width="1000dp"
+        android:layout_height="100dp"
         android:src="@drawable/ic_check"
         android:layout_gravity="center"
         android:id="@+id/game1"
@@ -122,9 +130,9 @@
         android:text="Next"
         android:id="@+id/game3"
         android:onClick="nextLevel"
-        android:layout_marginTop="20dp"
         android:visibility="gone"
         android:theme="@style/Widget.AppCompat.Spinner"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"/>
 
     <ImageView

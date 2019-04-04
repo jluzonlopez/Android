@@ -4,6 +4,9 @@
     <item android:id="@+id/help"
         android:title="@string/help"
         app:showAsAction="ifRoom"/>
+    <item android:id="@+id/topscores"
+        android:title="@string/topscores"
+        app:showAsAction="ifRoom"/>
     <item android:id="@+id/passed"
         android:title="@string/passed"
         app:showAsAction="ifRoom"/>
@@ -15,4 +18,6 @@
         android:title="@string/n2"/>
     <item android:id="@+id/nivel3"
         android:title="@string/n3"/>
+    <item android:id="@+id/save"
+        android:title="@string/save"/>
 </menu>

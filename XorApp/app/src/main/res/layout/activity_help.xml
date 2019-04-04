@@ -9,11 +9,12 @@
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="10dp"
+    android:background="@drawable/ic_passedbackground"
     tools:context=".HelpActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cómo jugar"
+        android:text="How to play"
         android:textSize="45dp"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
@@ -22,6 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
         android:text="@string/help_menu"
         android:id="@+id/helptext"
         android:textSize="20dp"

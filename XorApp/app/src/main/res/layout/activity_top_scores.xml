@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:id="@+id/statusLayout"
-    android:layout_marginTop="35dp"
     android:background="@drawable/ic_passedbackground"
-    tools:context=".StatusActivity">
-
+    android:layout_marginTop="35dp"
+    tools:context=".TopScoresActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Passed Circuits"
+        android:text="Top Scores"
         android:textSize="45dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="casual"
         android:layout_gravity="center"
         android:textColor="@android:color/holo_red_dark"/>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/topScoresLayout">
+        </LinearLayout>
+    </ScrollView>
 </android.widget.LinearLayout>

@@ -1,8 +1,8 @@
 package jluzon.mov.urjc.xorapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class StatusActivity extends AppCompatActivity {
     final float scalator = 2;
-    final float textSize = 20;
-    final float pointSize = 70;
+    final float textSize = 25;
+    final float pointSize = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +23,18 @@ public class StatusActivity extends AppCompatActivity {
 
 
         boolean passLvlsArray[] = null;
+        int timeLvlsArray[] = null;
+        int score = 0;
         LinearLayout lay = findViewById(R.id.statusLayout);
         ImageView img;
         TextView txt;
         TextView points;
-        int vPoints = 0;
 
         if(statusInfo != null){
             passLvlsArray = statusInfo.getBooleanArray("passed");
+            timeLvlsArray = statusInfo.getIntArray("times");
+            score = statusInfo.getInt("score");
+
         }
 
         points = new TextView(StatusActivity.this);
@@ -38,13 +42,13 @@ public class StatusActivity extends AppCompatActivity {
         for (int i=0;i<passLvlsArray.length;i++){
             txt = new TextView(StatusActivity.this);
             img = new ImageView(StatusActivity.this);
-            txt.setText("Level "+i);
+            txt.setText("Level: "+i+" ------ Time: "+timeLvlsArray[i]+"s");
+            txt.setTextColor(Color.BLACK);
             txt.setGravity(Gravity.CENTER);
             txt.setPadding(0,50,0,50);
             txt.setTextSize(textSize);
             if(passLvlsArray[i]) {
                 img.setImageResource(R.drawable.ic_check);
-                vPoints += 10;
             }else{
                 img.setImageResource(R.drawable.ic_death);
             }
@@ -54,7 +58,8 @@ public class StatusActivity extends AppCompatActivity {
             lay.addView(img);
         }
 
-        points.setText("Puntuación: "+vPoints);
+        points.setText("SCORE: "+score);
+        points.setTextColor(Color.BLACK);
         points.setGravity(Gravity.CENTER);
         points.setTextSize(pointSize);
         points.setPadding(0,100,0,50);
