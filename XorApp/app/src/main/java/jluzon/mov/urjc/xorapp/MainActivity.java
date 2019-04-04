@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -272,55 +271,10 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
         String times = writeTimes();
-        myData = myData + levelViews.player+times+"SCORE: "+levelViews.score;
-        finalData = ordenar(myData);
-        return finalData;
-    }
-
-    private String ordenarScores(int intScores[], String strLine[]){
-        String finalData="";
-        String playerInfo[];
-        int val;
-        int currentVal;
-        int length = intScores.length;
-        for(int i=0;;i=(i+1)%(strLine.length)){
-            val = intScores[length-1];
-            playerInfo = strLine[i].split(" ");
-            currentVal = Integer.parseInt(playerInfo[playerInfo.length-1]);
-
-            if(val == 0){
-                break;
-            }
-
-            if(val == currentVal){
-                finalData = finalData + strLine[i]+"\n";
-                length--;
-            }
-
-            if(length == 0){
-                break;
-            }
-        }
-        return finalData;
-    }
-
-    private String ordenar(String myData){
-        String strLine[] = myData.split("\n");
-        int scoreArray[] = new int[strLine.length];
-        String finalData;
-
-        if(strLine.length == 1){
-            return myData;
-        }else {
-            for (int i = 0; i < strLine.length; i++) {
-                String ejemplo[] = strLine[i].split(" ");
-                int points = Integer.parseInt(ejemplo[ejemplo.length - 1]);
-                scoreArray[i] = points;
-            }
-            Arrays.sort(scoreArray);
-            finalData = ordenarScores(scoreArray,strLine);
-        }
+        String checkData = Ordenation.checkPlayer(levelViews.player,levelViews.score,myData,times);
+        finalData = Ordenation.ordenar(checkData);
         return finalData;
     }
 

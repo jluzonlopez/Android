@@ -1,8 +1,6 @@
 package jluzon.mov.urjc.xorapp;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Switch;
 
@@ -46,11 +44,14 @@ public abstract class Level {
 
     public int calcScore(int[] times){
         int result = 0;
-            for(int i=0;i<times.length;i++){
-                if(times[i] != 0){
-                    result = result + ((i+1)*100)-times[i];
-                }
+        for(int i=0;i<times.length;i++){
+            if(times[i] != 0){
+                result = result + ((i+1)*100)-times[i];
             }
+        }
+        if(result <= 0){
+            return 0;
+        }
         return result;
     }
 }

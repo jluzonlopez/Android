@@ -45,7 +45,7 @@ public class StatusActivity extends AppCompatActivity {
             txt.setText("Level: "+i+" ------ Time: "+timeLvlsArray[i]+"s");
             txt.setTextColor(Color.BLACK);
             txt.setGravity(Gravity.CENTER);
-            txt.setPadding(0,50,0,50);
+            txt.setPadding(0,40,0,40);
             txt.setTextSize(textSize);
             if(passLvlsArray[i]) {
                 img.setImageResource(R.drawable.ic_check);
@@ -62,7 +62,7 @@ public class StatusActivity extends AppCompatActivity {
         points.setTextColor(Color.BLACK);
         points.setGravity(Gravity.CENTER);
         points.setTextSize(pointSize);
-        points.setPadding(0,100,0,50);
+        points.setPadding(0,80,0,50);
         lay.addView(points);
     }
 }

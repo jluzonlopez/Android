@@ -34,6 +34,7 @@ public class ExampleInstrumentedTest {
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(LoginActivity.class);
 
+
     @Test
     public void passLevel_sameActivity() {
         LoginActivity activity = mActivityRule.getActivity();
@@ -43,8 +44,8 @@ public class ExampleInstrumentedTest {
         /*onView(withId(R.id.ent0))
                 .perform(click());
         onView(withId(R.id.ent1))
-                .perform(click());
-        onView(withId(R.id.solutionButton))
+                .perform(click());*/
+        /*onView(withId(R.id.solutionButton))
                 .perform(click());*/
 
     }
