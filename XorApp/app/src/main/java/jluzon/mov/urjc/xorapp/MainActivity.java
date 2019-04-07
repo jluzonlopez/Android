@@ -1,5 +1,6 @@
 package jluzon.mov.urjc.xorapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Environment;
@@ -17,12 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -198,11 +194,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     InfLvl levelViews;
-    private boolean mExternalStorageAvaiable = false;
-    private boolean mExternalStorageAWriteable = false;
-    private String state = Environment.getExternalStorageState();
-    private String myDir = "Xorapp";
-    private String myFile = "myData.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,69 +231,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void checkdExternalStorageRead(){
-        if (Environment.MEDIA_MOUNTED.equals(state)){
-            //podemos leer y escribir
-            mExternalStorageAvaiable = mExternalStorageAWriteable = true;
-        }else if(Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)){
-            mExternalStorageAvaiable = true;
-            mExternalStorageAWriteable = false;
-        }else{
-            mExternalStorageAvaiable = mExternalStorageAWriteable = false;
-        }
-    }
-
-    private String readExternalStorage(){
-        checkdExternalStorageRead();
-        String myData = "";
-        String finalData;
-        if(mExternalStorageAvaiable){
-            File dir = getExternalFilesDir(myDir);
-            File file = new File(dir,myFile);
-            try{
-                FileReader fil = new FileReader(file);
-                BufferedReader br = new BufferedReader(fil);
-                String strLine;
-                while((strLine = br.readLine()) != null){
-                    myData = myData +strLine+"\n";
-                }
-                br.close();
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        String times = writeTimes();
-        String checkData = Ordenation.checkPlayer(levelViews.player,levelViews.score,myData,times);
-        finalData = Ordenation.ordenar(checkData);
-        return finalData;
-    }
-
     private String writeTimes(){
         String s = "";
         for(int i=0;i<levelViews.timeLvls.length;i++){
             s = s+" Time-"+i+": "+ levelViews.timeLvls[i]+"s ";
         }
         return s;
-    }
-
-    // write in external storage
-    private void writeExternalStorage(){
-        checkdExternalStorageRead();
-        String data;
-        data = readExternalStorage();
-        if(mExternalStorageAWriteable){
-            File dir = getExternalFilesDir(myDir);
-            File file = new File(dir,myFile);
-            try{
-                FileOutputStream f = new FileOutputStream(file,false);
-                DataOutputStream dout = new DataOutputStream(f);
-                dout.writeBytes(data);
-                dout.close();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }
     }
 
     private void setLevelRecover(int lv, long t){
@@ -386,8 +320,10 @@ public class MainActivity extends AppCompatActivity {
         levelViews.setAllFalse(levelViews.chkB);
     }
 
+    //write in external storage
     private void saveGame(View hb){
-        writeExternalStorage();
+        String times = writeTimes();
+        TopScores.writetoFile(MainActivity.this,levelViews.timeLvls,levelViews.player,levelViews.score);
     }
 
     private void helpButton(View hb){
@@ -410,10 +346,6 @@ public class MainActivity extends AppCompatActivity {
     private void showTopScores(View hb){
         Intent scores = new Intent(MainActivity.this,TopScoresActivity.class);
         scores.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        Bundle scoresInfo = new Bundle();
-        scoresInfo.putString("dir",myDir);
-        scoresInfo.putString("file",myFile);
-        scores.putExtras(scoresInfo);
         startActivity(scores);
     }
 
