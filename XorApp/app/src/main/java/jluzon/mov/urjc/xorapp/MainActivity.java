@@ -114,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private void setTimeLvl(int t){
-            timeLvls[imgLvl] = t;
+            if(timeLvls[imgLvl] > t || timeLvls[imgLvl] == 0){
+                timeLvls[imgLvl] = t;
+            }
         }
 
         private boolean[] getBoolBut(Switch[] chb){
@@ -322,7 +324,6 @@ public class MainActivity extends AppCompatActivity {
 
     //write in external storage
     private void saveGame(View hb){
-        String times = writeTimes();
         TopScores.writetoFile(MainActivity.this,levelViews.timeLvls,levelViews.player,levelViews.score);
     }
 

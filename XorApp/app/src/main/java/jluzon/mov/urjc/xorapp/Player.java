@@ -19,7 +19,7 @@ public class Player implements Comparable<Player>{
         return playerName;
     }
 
-    private String getTimes(){
+    private String getTimesString(){
         String t="";
         for(int i=0;i<times.length;i++){
             t=t+","+times[i];
@@ -35,6 +35,6 @@ public class Player implements Comparable<Player>{
 
     @Override
     public String toString(){
-        return this.getPlayerName()+this.getTimes()+","+this.getScore();
+        return this.getPlayerName()+this.getTimesString()+","+this.getScore();
     }
 }

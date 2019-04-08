@@ -72,6 +72,7 @@ public class TopScores {
         readFromFile(c);
         checkPlayer(player,times,score);
         Collections.sort(players);
+        checkdExternalStorageRead();
         if (mExternalStorageAWriteable) {
             File dir = c.getExternalFilesDir(myDir);
             File f = new File(dir, myFile);
@@ -92,6 +93,10 @@ public class TopScores {
         int i;
         boolean founded = false;
         Player p = new Player(name,times,score);
+
+        if(score == 0){
+            return;
+        }
 
         for(i=0;i<players.size();i++){
             if(players.get(i).getPlayerName().equals(name)){
