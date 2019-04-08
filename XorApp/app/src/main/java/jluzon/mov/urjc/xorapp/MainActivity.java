@@ -212,11 +212,13 @@ public class MainActivity extends AppCompatActivity {
             int lvlImg = savedInstanceState.getInt("lvl");
             boolean [] passedLvl = savedInstanceState.getBooleanArray("passedLvl");
             int [] timeLvl = savedInstanceState.getIntArray("timeLvl");
+            int score = savedInstanceState.getInt("score");
             boolean [] chbStatus = savedInstanceState.getBooleanArray("chbStatus");
             int [] resView = savedInstanceState.getIntArray("resViews");
             long time = savedInstanceState.getLong("time");
             levelViews.setLvlImg(lvlImg);
             levelViews.passLvlsArray = passedLvl;
+            levelViews.score = score;
             levelViews.timeLvls = timeLvl;
             levelViews.setChButtons(chbStatus);
             levelViews.setVisRes(resView);
@@ -383,6 +385,7 @@ public class MainActivity extends AppCompatActivity {
         state.putBooleanArray("chbStatus",checkButtStatus);
         state.putBooleanArray("passedLvl",levelViews.passLvlsArray); // passed levels array
         state.putIntArray("timeLvl",levelViews.timeLvls); // time of passed levels
+        state.putInt("score",levelViews.score); //score
         state.putInt("lvl",levelViews.imgLvl); // num level
         state.putIntArray("resViews",levelViews.getViewVis()); // end game views
         state.putLong("time",timeStopped);
