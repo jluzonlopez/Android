@@ -74,5 +74,15 @@ public class MenuTest {
         if (level != 2) {
             Assert.fail("Wrong level loaded" + level);
         }
+
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+
+        onView(withText("Level 3"))
+                .perform(click());
+
+        level = activity.levelViews.getCurrentLevel();
+        if (level != 3) {
+            Assert.fail("Wrong level loaded" + level);
+        }
     }
 }
