@@ -1,10 +1,8 @@
 package jluzon.mov.urjc.xorapp;
 
-import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.base.MainThread;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -14,15 +12,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 
 /**
@@ -41,16 +34,29 @@ public class ExampleInstrumentedTest {
     }
 
     @Rule
-    public ActivityTestRule<LoginActivity> mLoginActivityRule = new ActivityTestRule<>(LoginActivity.class);
+    public ActivityTestRule<MainActivity> mMainActivityRule = new ActivityTestRule<>(MainActivity.class,false,false);
 
     @Test
-    public void Login_sameActivity() {
-        // Type text and then press the button.
+    public void passLevelsActivity() {
+        // Pasamos el intent queq necesitamos
 
-        String playerName = "Jorge";
-        onView(withId(R.id.name)).perform(typeText(playerName),closeSoftKeyboard());
-        onView(withId(R.id.name)).check(matches(withText(playerName)));
-        onView(withId(R.id.start)).perform(click());
+        Intent intent = new Intent();
+        intent.putExtra("name","Jorge");
+        mMainActivityRule.launchActivity(intent);
+
+        MainActivity activity = mMainActivityRule.getActivity();
+
+        String playerName = activity.levelViews.getPlayerName();
+        int level;
+
+        if(!playerName.equals("Jorge")){
+            Assert.fail("Wrong name loaded"+playerName);
+        }
+
+        level = activity.levelViews.getCurrentLevel();
+        if(level != 0){
+            Assert.fail("Wrong level loaded"+level);
+        }
 
         //pasando nivel 1
         onView(withId(R.id.ent1))
@@ -70,11 +76,21 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.game3))
                 .perform(click());
 
+        level = activity.levelViews.getCurrentLevel();
+        if(level != 1){
+            Assert.fail("Wrong level loaded"+level);
+        }
+
         //pasando nivel 2
         onView(withId(R.id.solutionButton))
                 .perform(click());
         onView(withId(R.id.game3))
                 .perform(click());
+
+        level = activity.levelViews.getCurrentLevel();
+        if(activity.levelViews.getCurrentLevel() != 2){
+            Assert.fail("Wrong level loaded");
+        }
 
         //pasando nivel 3
         onView(withId(R.id.solutionButton))
@@ -90,6 +106,11 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.game3))
                 .perform(click());
 
+        level = activity.levelViews.getCurrentLevel();
+        if(level != 3){
+            Assert.fail("Wrong level loaded"+level);
+        }
+
         //pasando nivel 4
         onView(withId(R.id.ent2))
                 .perform(click())
@@ -101,7 +122,5 @@ public class ExampleInstrumentedTest {
                 .perform(click());
         onView(withId(R.id.game3))
                 .perform(click());
-
-        pressBack();
     }
 }

@@ -190,8 +190,8 @@ public class MainActivity extends AppCompatActivity {
             return imgLvl;
         }
 
-        public void setPlayerName(String s){
-            playerName.setText(s);
+        public String getPlayerName(){
+            return player;
         }
     }
 
