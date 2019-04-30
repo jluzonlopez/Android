@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -29,7 +30,7 @@ public class PaintGraphActivity extends AppCompatActivity {
             "13","14","15","16","17","18","19","20","21","22","23","24"};
     private String myPc;
     private GraphView graph;
-    LineGraphSeries<DataPoint> series;
+    BarGraphSeries<DataPoint> series;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,8 @@ public class PaintGraphActivity extends AppCompatActivity {
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(xeje);
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        series = new LineGraphSeries<>();
-        series.setThickness(10);
+        series = new BarGraphSeries<>();
+        series.setSpacing(-100);
         Intent paint = getIntent();
         Bundle pcInfo = paint.getExtras();
 
@@ -79,14 +80,14 @@ public class PaintGraphActivity extends AppCompatActivity {
         if (mExternalStorageAvaiable) {
             File dir = getExternalFilesDir(myDir);
             File file = new File(dir, myPc);
-            float x = (float)0.0;
+            int x = 0;
             try {
                 FileReader f = new FileReader(file);
                 BufferedReader br = new BufferedReader(f);
                 String strLine;
                 while ((strLine = br.readLine()) != null) {
                     addPointGraph(x,Integer.parseInt(strLine)/1000);
-                    x=x+(float)1;
+                    x=x+1;
                 }
                 br.close();
             } catch (IOException e) {
@@ -95,9 +96,14 @@ public class PaintGraphActivity extends AppCompatActivity {
         }
     }
 
-    private void addPointGraph(float x, int y){
+    private void addPointGraph(int x, int y){
+        Log.d("OVER","X: "+x+" Y: "+y);
         DataPoint d = new DataPoint(x,y);
         series.appendData(d,true,100);
+        series.setColor(Color.GREEN);
+        if(y>35){
+            series.setColor(Color.RED);
+        }
         graph.addSeries(series);
     }
 }
