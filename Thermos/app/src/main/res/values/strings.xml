@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Thermos</string>
+    <string name="editString">write ip to connect</string>
+    <string name="connectButton">Connect</string>
+    <string name="autor">by Jorge Luzón</string>
+    <string name="b0">Active PCs</string>
+    <string name="b1">History</string>
+    <string name="thempText">Your Current PC Themp</string>
+    <string name="showGraph">Show Graphic</string>
+    <string name="graphicThemp">Graphic Temperatures</string>
+</resources>

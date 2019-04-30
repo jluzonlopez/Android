@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivePcsActivity"
+    android:id="@+id/activePcsLayout"
+    android:background="#E5E7E9">
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b0"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:textSize="60sp"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleY="11"
+        android:scaleX="11"
+        android:src="@drawable/ic_computer_black_24dp"
+        android:background="@null"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/ipPc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/editString"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getPcThemp"
+        android:layout_gravity="center"
+        android:text="@string/connectButton"
+        android:scaleY="2"
+        android:scaleX="2"
+        android:layout_marginTop="50dp"/>
+</android.widget.LinearLayout>

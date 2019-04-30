@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:id="@+id/mainLayout"
+    android:background="#E5E7E9">
+
+    <TextView
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="170sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/app_name"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/autor"
+        android:layout_marginStart="500dp"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b0"
+        android:onClick="activePcs"
+        android:layout_marginTop="200dp"
+        android:scaleY="3"
+        android:scaleX="3"
+        android:layout_gravity="center"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b1"
+        android:onClick="showHistory"
+        android:layout_marginTop="150dp"
+        android:scaleY="3"
+        android:scaleX="3"
+        android:layout_gravity="center"/>
+
+</android.widget.LinearLayout>
