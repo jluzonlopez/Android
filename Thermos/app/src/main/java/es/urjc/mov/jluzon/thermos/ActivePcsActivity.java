@@ -40,7 +40,7 @@ public class ActivePcsActivity extends AppCompatActivity {
             String message = in.readUTF();
             Log.d("OVER", "Respuesta: "+message);
             pcThemp = Integer.parseInt(message)/1000+"";
-            PaintGraph.writetoFile(ActivePcsActivity.this,message,pc);
+            PaintGraph.update(ActivePcsActivity.this,message,pc);
 
             out.close();
             s.close();
