@@ -30,7 +30,7 @@ public class ActivePcsActivity extends AppCompatActivity {
         DataInputStream in;
         try{
             s = new Socket(pc,SERVERPORT);
-            //s.setSoTimeout(2000);
+            s.setSoTimeout(2000);
             out = new DataOutputStream(s.getOutputStream());
             in = new DataInputStream(s.getInputStream());
             Messages m = new Messages.ReqMsg();
