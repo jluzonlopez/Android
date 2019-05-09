@@ -15,7 +15,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ActivePcsActivity extends AppCompatActivity {
-    private final static int SERVERPORT = 25050;
+    final static int SERVERPORT = 25050;
     private String pcThemp;
 
     @Override

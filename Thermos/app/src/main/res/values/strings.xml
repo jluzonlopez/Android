@@ -8,4 +8,7 @@
     <string name="thempText">Your Current PC Themp</string>
     <string name="showGraph">Show Graphic</string>
     <string name="graphicThemp">Graphic Temperatures</string>
+    <string name="channel_name">My notification</string>
+    <string name="channel_description">Themp</string>
+    <string name="local_service_started">21</string>
 </resources>
