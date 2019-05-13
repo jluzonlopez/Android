@@ -124,6 +124,8 @@ public class PaintGraphActivity extends AppCompatActivity {
         Log.d("OVER","Data length: "+myData.length);
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(myData);
 
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Time (hours)");
+        graph.getGridLabelRenderer().setVerticalAxisTitle("T (ºC)");
 
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);

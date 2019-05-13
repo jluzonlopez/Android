@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.io.DataInputStream;
@@ -19,7 +20,7 @@ public class ThermoService extends IntentService {
     private boolean conexionFail;
     private NotificationManager mNM;
     public static final int NOTIFICATION_ID = 1;
-    private final String SERVERIP = "192.168.1.48";
+    private final String SERVERIP = "212.128.254.193";
 
     public ThermoService() {
         super("ThermoService");
@@ -88,11 +89,12 @@ public class ThermoService extends IntentService {
                 e.printStackTrace();
             }
 
-            if(pcThemp > 30 || conexionFail){
+            if(pcThemp > 20 || conexionFail){
                 break;
             }
         }
-        sendNotification();
+        //sendNotification();
+        Log.d("OVER","No haciendo nada");
     }
 
     private void sendNotification(){
@@ -100,17 +102,13 @@ public class ThermoService extends IntentService {
         Log.d("OVER","Creando notificacion");
         mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 
-        PendingIntent contentIntent = PendingIntent.getActivity(this,0,
-                new Intent(ThermoService.this,ThermoService.class),0);
 
-        Notification notification = new Notification.Builder(this)
+        Notification notification = new Notification.Builder(ThermoService.this)
                 .setTicker("TICKER")
                 .setContentTitle("Notification")
                 .setContentText("Themperatura: "+pcThemp)
-                .setWhen(System.currentTimeMillis())
-                .setContentIntent(contentIntent)
-                .setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_thermometer)
+                .setSmallIcon(R.drawable.ic_casino_black_24dp)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .build();
         Log.d("OVER","Notificando");
         mNM.notify(NOTIFICATION_ID,notification);
@@ -122,6 +120,6 @@ public class ThermoService extends IntentService {
     public void onDestroy(){
         super.onDestroy();
         Log.d("OVER","StopSelf");
-        mNM.cancel(NOTIFICATION_ID);
+        //mNM.cancel(NOTIFICATION_ID);
     }
 }
