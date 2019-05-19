@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <service
             android:name=".ThermoService"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -47,6 +47,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ThempActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ConfigurationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

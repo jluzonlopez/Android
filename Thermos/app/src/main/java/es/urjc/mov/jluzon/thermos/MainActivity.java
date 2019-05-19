@@ -25,10 +25,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(activePcs);
     }
 
-    @Override
+    public void configuration(View hb){
+        Intent cfg = new Intent(MainActivity.this,ConfigurationActivity.class);
+        cfg.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(cfg);
+    }
+
+   /* @Override
     protected void onStop(){
         super.onStop();
         Intent service = new Intent(MainActivity.this,ThermoService.class);
         startService(service);
-    }
+    }*/
 }

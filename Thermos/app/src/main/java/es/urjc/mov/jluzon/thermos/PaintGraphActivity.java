@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
@@ -29,7 +30,6 @@ public class PaintGraphActivity extends AppCompatActivity {
     private boolean mExternalStorageAvaiable = false;
     private String state = Environment.getExternalStorageState();
     private final String myDir = PaintGraph.getDir();
-    private final String title = "Last 24h";
     final float txtSize = 30;
     final String [] xEje = new String[PaintGraph.maxTemperatures];
     private String myPc;
@@ -61,11 +61,12 @@ public class PaintGraphActivity extends AppCompatActivity {
         TextView txt = new TextView(PaintGraphActivity.this);
         edTxt = new EditText(PaintGraphActivity.this);
         Button setTh = new Button(PaintGraphActivity.this);
+        edTxt.setGravity(Gravity.CENTER);
         edTxt.setHint("Set Alert");
         setTh.setText("Submit");
         setTh.setOnClickListener(new butGraph());
         setTh.setBackgroundColor(Color.TRANSPARENT);
-        txt.setText("PC IP: "+myPc);
+        txt.setText("PC File: "+myPc);
         txt.setTextColor(Color.BLUE);
         txt.setBackgroundColor(Color.WHITE);
         txt.setGravity(Gravity.CENTER);
@@ -92,7 +93,6 @@ public class PaintGraphActivity extends AppCompatActivity {
     private void readPcThemps() {
         checkdExternalStorageRead();
         temperatures = new ArrayList<>();
-        Log.d("OVER","SIZE: "+temperatures.size());
         if (mExternalStorageAvaiable) {
             File dir = getExternalFilesDir(myDir);
             File file = new File(dir, myPc);
@@ -114,18 +114,20 @@ public class PaintGraphActivity extends AppCompatActivity {
         GraphView graph = findViewById(R.id.graph);
         graph.removeAllSeries();
 
+        String title = "Last 24";
+        String vertAxis = "T (ºC)";
+        String horzAxis = "Nº";
 
         DataPoint[] myData = new DataPoint[temperatures.size()];
         for(int i=0;i<temperatures.size();i++){
-            DataPoint p = new DataPoint(i,Integer.parseInt(temperatures.get(i))/1000);
+            DataPoint p = new DataPoint(i,Integer.parseInt(temperatures.get(i)));
             myData[i] = p;
         }
 
-        Log.d("OVER","Data length: "+myData.length);
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(myData);
 
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Time (hours)");
-        graph.getGridLabelRenderer().setVerticalAxisTitle("T (ºC)");
+        graph.getGridLabelRenderer().setHorizontalAxisTitle(horzAxis);
+        graph.getGridLabelRenderer().setVerticalAxisTitle(vertAxis);
 
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
@@ -166,8 +168,16 @@ public class PaintGraphActivity extends AppCompatActivity {
 
     public class butGraph implements View.OnClickListener{
         public void onClick(View b){
-            alert = Integer.parseInt(edTxt.getText()+"");
-            setGraph();
+            if(Utility.checkAlert(edTxt.getText()+"")){
+                alert = Integer.parseInt(edTxt.getText()+"");
+                setGraph();
+                return;
+            }
+            String txt = "Alert invalid, must be between 0º-100º";
+            int time = Toast.LENGTH_SHORT;
+            Toast msg = Toast.makeText(PaintGraphActivity.this,txt,time);
+            msg.show();
+
         }
     }
 

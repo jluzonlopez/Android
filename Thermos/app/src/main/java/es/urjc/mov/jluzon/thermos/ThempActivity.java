@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,7 +15,7 @@ public class ThempActivity extends AppCompatActivity {
     private String pc;
     private LinearLayout lay;
     final float thempSize = 80;
-    final float ipSize =50;
+    final float ipSize = 50;
     final float notFound = 110;
     private Button showGraph;
 

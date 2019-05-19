@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="@string/b0"
         android:onClick="activePcs"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:scaleY="3"
         android:scaleX="3"
         android:layout_gravity="center"/>
@@ -43,7 +43,18 @@
         android:layout_height="wrap_content"
         android:text="@string/b1"
         android:onClick="showHistory"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
+        android:scaleY="3"
+        android:scaleX="3"
+        android:layout_gravity="center"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b3"
+        android:onClick="configuration"
+        android:layout_marginTop="100dp"
         android:scaleY="3"
         android:scaleX="3"
         android:layout_gravity="center"/>

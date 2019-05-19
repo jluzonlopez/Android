@@ -5,10 +5,16 @@
     <string name="autor">by Jorge Luzón</string>
     <string name="b0">Active PCs</string>
     <string name="b1">History</string>
+    <string name="b3">Configuration</string>
+    <string name="cfg">Set your configuration</string>
+    <string name="cfgIP">IP</string>
+    <string name="alert">Alert ºC</string>
     <string name="thempText">Your Current PC Themp</string>
     <string name="showGraph">Show Graphic</string>
     <string name="graphicThemp">Graphic Temperatures</string>
     <string name="channel_name">My notification</string>
     <string name="channel_description">Themp</string>
     <string name="local_service_started">21</string>
+    <string name="textIP">Select PC to tracing</string>
+    <string name="notification">You will be notificated if temperature is over this number. (Number in ºC)</string>
 </resources>

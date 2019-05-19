@@ -26,6 +26,7 @@
         android:layout_height="200dip"
         android:id="@+id/graph"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="70dp"/>
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="15dp"/>
 
 </android.widget.LinearLayout>
