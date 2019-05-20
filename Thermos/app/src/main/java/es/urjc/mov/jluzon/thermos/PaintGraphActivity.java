@@ -29,9 +29,9 @@ import java.util.ArrayList;
 public class PaintGraphActivity extends AppCompatActivity {
     private boolean mExternalStorageAvaiable = false;
     private String state = Environment.getExternalStorageState();
-    private final String myDir = PaintGraph.getDir();
+    private final String myDir = Utility.getDir();
     final float txtSize = 30;
-    final String [] xEje = new String[PaintGraph.maxTemperatures];
+    final String [] xEje = new String[Utility.maxTemperatures];
     private String myPc;
     private ArrayList<String> temperatures;
     private EditText edTxt;
@@ -49,7 +49,7 @@ public class PaintGraphActivity extends AppCompatActivity {
         }
         alert = 100;
 
-        for(int i=0;i<PaintGraph.maxTemperatures;i++){
+        for(int i=0;i<Utility.maxTemperatures;i++){
             xEje[i] = (i+1)+"";
         }
 

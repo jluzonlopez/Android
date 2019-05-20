@@ -16,5 +16,6 @@
     <string name="channel_description">Themp</string>
     <string name="local_service_started">21</string>
     <string name="textIP">Select PC to tracing</string>
-    <string name="notification">You will be notificated if temperature is over this number. (Number in ºC)</string>
+    <string name="notification">Select your alert themp (Number in ºC)</string>
+    <string name="textConfiguration">Set a configuration to trace one PC temperature, select PC IP and which themp you want as alert.\nYou will be notificated if temperature is over this number.</string>
 </resources>

@@ -26,7 +26,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void checkPcFiles(){
-        files = PaintGraph.readFiles(HistoryActivity.this);
+        files = Utility.readFiles(HistoryActivity.this);
     }
 
     private void printPcs(String pcIp){

@@ -3,6 +3,7 @@ package es.urjc.mov.jluzon.thermos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,10 +32,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(cfg);
     }
 
-   /* @Override
+    @Override
     protected void onStop(){
         super.onStop();
+        Log.d("OVER","OnStop MainActivity");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d("OVER","OnDestroy");
         Intent service = new Intent(MainActivity.this,ThermoService.class);
         startService(service);
-    }*/
+    }
 }

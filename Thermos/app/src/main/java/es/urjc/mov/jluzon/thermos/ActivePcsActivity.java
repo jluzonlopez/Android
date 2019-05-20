@@ -21,7 +21,7 @@ public class ActivePcsActivity extends AppCompatActivity {
     private String getThemp(String pc){
         String pcThemp = Utility.connect(pc);
         if(pcThemp != null){
-            PaintGraph.update(ActivePcsActivity.this,pcThemp,pc);
+            Utility.update(ActivePcsActivity.this,pcThemp,pc);
         }
         return pcThemp;
     }
