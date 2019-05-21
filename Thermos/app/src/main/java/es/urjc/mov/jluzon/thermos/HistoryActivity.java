@@ -21,7 +21,10 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         checkPcFiles();
         for(int i=0;i<files.length;i++){
-            printPcs(files[i].getName());
+            if(!files[i].getName().equals(Utility.myCfg)){
+                printPcs(files[i].getName());
+            }
+
         }
     }
 
@@ -30,7 +33,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void printPcs(String pcIp){
-        LinearLayout lay = findViewById(R.id.historyLayout);
+        LinearLayout lay = findViewById(R.id.pcsLayout);
         LinearLayout pcLay = new LinearLayout(HistoryActivity.this);
         pcLay.setOrientation(LinearLayout.VERTICAL);
         lay.addView(pcLay);

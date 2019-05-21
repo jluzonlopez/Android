@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent service = new Intent(MainActivity.this,ThermoService.class);
+        startService(service);
     }
 
     public void showHistory(View hb){
@@ -33,16 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop(){
-        super.onStop();
-        Log.d("OVER","OnStop MainActivity");
-    }
-
-    @Override
     protected void onDestroy(){
         super.onDestroy();
         Log.d("OVER","OnDestroy");
-        Intent service = new Intent(MainActivity.this,ThermoService.class);
-        startService(service);
     }
 }

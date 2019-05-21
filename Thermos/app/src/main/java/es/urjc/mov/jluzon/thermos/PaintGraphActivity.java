@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +30,11 @@ public class PaintGraphActivity extends AppCompatActivity {
     private String state = Environment.getExternalStorageState();
     private final String myDir = Utility.getDir();
     final float txtSize = 30;
-    final String [] xEje = new String[Utility.maxTemperatures];
+    private final int XMIN = 0;
+    private final int XMAX = 24;
+    private final int YMIN = 0;
+    private final int YMAX = 100;
+    final String[] xEje = new String[Utility.maxTemperatures];
     private String myPc;
     private ArrayList<String> temperatures;
     private EditText edTxt;
@@ -44,19 +47,23 @@ public class PaintGraphActivity extends AppCompatActivity {
         Intent paint = getIntent();
         Bundle pcInfo = paint.getExtras();
 
-        if(pcInfo != null){
+        if (pcInfo != null) {
             myPc = pcInfo.getString("pc");
         }
         alert = 100;
 
-        for(int i=0;i<Utility.maxTemperatures;i++){
-            xEje[i] = (i+1)+"";
+        for (int i = 0; i < Utility.maxTemperatures; i++) {
+            xEje[i] = (i + 1) + "";
+        }
+
+        if (savedInstanceState != null) {
+            alert = savedInstanceState.getInt("alert");
         }
 
         setScreen();
     }
 
-    private void setScreen(){
+    private void setScreen() {
         LinearLayout lay = findViewById(R.id.graphLayout);
         TextView txt = new TextView(PaintGraphActivity.this);
         edTxt = new EditText(PaintGraphActivity.this);
@@ -66,25 +73,25 @@ public class PaintGraphActivity extends AppCompatActivity {
         setTh.setText("Submit");
         setTh.setOnClickListener(new butGraph());
         setTh.setBackgroundColor(Color.TRANSPARENT);
-        txt.setText("PC File: "+myPc);
+        txt.setText("PC: " + myPc);
         txt.setTextColor(Color.BLUE);
         txt.setBackgroundColor(Color.WHITE);
         txt.setGravity(Gravity.CENTER);
         txt.setTextSize(txtSize);
-        txt.setPadding(0,40,0,40);
-        edTxt.setPadding(0,35,0,20);
-        setTh.setPadding(0,20,0,0);
+        txt.setPadding(0, 40, 0, 40);
+        edTxt.setPadding(0, 35, 0, 20);
+        setTh.setPadding(0, 20, 0, 0);
         lay.addView(txt);
         lay.addView(edTxt);
         lay.addView(setTh);
         setGraph();
     }
 
-    private void checkdExternalStorageRead(){
-        if (Environment.MEDIA_MOUNTED.equals(state)){
+    private void checkdExternalStorageRead() {
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
             //podemos leer
             mExternalStorageAvaiable = true;
-        }else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)){
+        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
             //Podemos leer
             mExternalStorageAvaiable = true;
         }
@@ -110,7 +117,7 @@ public class PaintGraphActivity extends AppCompatActivity {
         }
     }
 
-    private void paintGraph(){
+    private void paintGraph() {
         GraphView graph = findViewById(R.id.graph);
         graph.removeAllSeries();
 
@@ -119,8 +126,8 @@ public class PaintGraphActivity extends AppCompatActivity {
         String horzAxis = "Nº";
 
         DataPoint[] myData = new DataPoint[temperatures.size()];
-        for(int i=0;i<temperatures.size();i++){
-            DataPoint p = new DataPoint(i,Integer.parseInt(temperatures.get(i)));
+        for (int i = 0; i < temperatures.size(); i++) {
+            DataPoint p = new DataPoint(i, Integer.parseInt(temperatures.get(i)));
             myData[i] = p;
         }
 
@@ -130,12 +137,12 @@ public class PaintGraphActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setVerticalAxisTitle(vertAxis);
 
         graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(100);
+        graph.getViewport().setMinY(YMIN);
+        graph.getViewport().setMaxY(YMAX);
 
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(24);
+        graph.getViewport().setMinX(XMIN);
+        graph.getViewport().setMaxX(XMAX);
 
         graph.addSeries(series);
 
@@ -143,7 +150,7 @@ public class PaintGraphActivity extends AppCompatActivity {
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
             @Override
             public int get(DataPoint data) {
-                if(data.getY()>alert){
+                if (data.getY() > alert) {
                     return Color.RED;
                 }
                 return Color.GREEN;
@@ -161,24 +168,28 @@ public class PaintGraphActivity extends AppCompatActivity {
         series.setValuesOnTopColor(Color.BLUE);
     }
 
-    private void setGraph(){
+    private void setGraph() {
         readPcThemps();
         paintGraph();
     }
 
-    public class butGraph implements View.OnClickListener{
-        public void onClick(View b){
-            if(Utility.checkAlert(edTxt.getText()+"")){
-                alert = Integer.parseInt(edTxt.getText()+"");
+    public class butGraph implements View.OnClickListener {
+        public void onClick(View b) {
+            if (Utility.checkAlert(edTxt.getText() + "")) {
+                alert = Integer.parseInt(edTxt.getText() + "");
                 setGraph();
                 return;
             }
             String txt = "Alert invalid, must be between 0º-100º";
             int time = Toast.LENGTH_SHORT;
-            Toast msg = Toast.makeText(PaintGraphActivity.this,txt,time);
+            Toast msg = Toast.makeText(PaintGraphActivity.this, txt, time);
             msg.show();
 
         }
     }
 
+    public void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putInt("alert",alert);
+    }
 }

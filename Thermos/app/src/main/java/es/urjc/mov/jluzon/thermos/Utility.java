@@ -23,7 +23,7 @@ class Utility {
     private static boolean mExternalStorageAWriteable = false;
     private static String state = Environment.getExternalStorageState();
     private static String myDir = "Thermos";
-    private static String myCfg = "CfgThermos";
+    static String myCfg = "CfgThermos";
     private static ArrayList<String> temperatures;
     static final int maxTemperatures = 24;
     private static final int TIMEOUT = 2*1000; //time in sec
@@ -66,9 +66,8 @@ class Utility {
         }
     }
 
-    static String connect(String ipc){
+    static synchronized String connect(String ipc){
         final String pc = ipc;
-        Log.d("OVER","Connecting to: "+ipc);
         Thread c = new Thread() {
             @Override
             public void run() {
@@ -100,11 +99,11 @@ class Utility {
         }
     }
 
-    private static void readFromFile(Context c, ArrayList<String> temp, String pc) {
+    private static synchronized void readFromFile(Context c, ArrayList<String> temp, String pc) {
         checkdExternalStorageRead();
         if (mExternalStorageAvaiable) {
             File dir = c.getExternalFilesDir(myDir);
-            File file = new File(dir, pc+".txt");
+            File file = new File(dir, pc);
             try {
                 FileReader f = new FileReader(file);
                 BufferedReader br = new BufferedReader(f);
@@ -119,11 +118,11 @@ class Utility {
         }
     }
 
-    private static void writetoFile(Context c, ArrayList<String> temps, String pc){
+    private static synchronized void writetoFile(Context c, ArrayList<String> temps, String pc){
         checkdExternalStorageRead();
         if (mExternalStorageAWriteable) {
             File dir = c.getExternalFilesDir(myDir);
-            File f = new File(dir, pc+".txt");
+            File f = new File(dir, pc);
             try {
                 FileOutputStream file = new FileOutputStream(f, false);
                 DataOutputStream dout = new DataOutputStream(file);
@@ -166,12 +165,11 @@ class Utility {
             return (Integer.parseInt(alert) > 0 && Integer.parseInt(alert) < 100 && !alert.equals(""));
         }catch (NumberFormatException e){
             return false;
-
         }
     }
 
     static boolean checkIP(String ip){
-        if(ip == null){
+        if(ip == null || ip.equals("")){
             return false;
         }
         String ipNumbers[] = ip.split("\\.");
@@ -188,13 +186,13 @@ class Utility {
         return (ipNumbers.length == 4 && okIp);
     }
 
-    // Configurations methods
+    // Configuration methods
 
-    static void setCfg(Context c, String ip, String alert){
+    static synchronized void setCfg(Context c, String ip, String alert){
         checkdExternalStorageRead();
         if (mExternalStorageAWriteable) {
             File dir = c.getExternalFilesDir(myDir);
-            File f = new File(dir, myCfg+".txt");
+            File f = new File(dir, myCfg);
             try {
                 FileOutputStream file = new FileOutputStream(f, false);
                 DataOutputStream dout = new DataOutputStream(file);
@@ -206,13 +204,13 @@ class Utility {
         }
     }
 
-    static String[] readCfg(Context c){
+    static synchronized String[] readCfg(Context c){
         checkdExternalStorageRead();
         String [] cfg = new String[CFGSIZE];
         int pos = 0;
         if (mExternalStorageAvaiable) {
             File dir = c.getExternalFilesDir(myDir);
-            File file = new File(dir, myCfg+".txt");
+            File file = new File(dir, myCfg);
             try {
                 FileReader f = new FileReader(file);
                 BufferedReader br = new BufferedReader(f);
@@ -235,5 +233,4 @@ class Utility {
 
         return checkIP(ip) && checkAlert(alert);
     }
-
 }
